@@ -1,4 +1,5 @@
 def _artifacts_repo_impl(ctx):
+    ctx.file("BUILD.bazel", 'exports_files(["test.txt"])')
     ctx.execute(['az', 'artifacts', 'universal', 'download', '--organization', ctx.attr.org, '--scope', 'project', '--project', ctx.attr.project, '--feed', ctx.attr.feed ,'--name', ctx.attr.package_name, '--version', ctx.attr.version, '--path', "."])
 
 az_artifacts_repo = repository_rule(
